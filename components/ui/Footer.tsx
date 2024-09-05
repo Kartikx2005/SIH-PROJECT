@@ -5,7 +5,7 @@ import { Facebook, Twitter, Youtube, Instagram } from 'lucide-react'
 export function Footer() {
   return (
     <footer className="bg-[#337ab7] text-white py-4">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-14">
         <div className="text-center mb-4 text-sm">
           <Link href="/event-calendar" className="text-white hover:underline font-bold">Event Calendar</Link>
           <span className="mx-1">|</span>
@@ -46,10 +46,10 @@ export function Footer() {
         <div className="flex flex-col items-center border-t border-white pt-3">
           <div className="text-sm mb-2 text-center">
             <p><span className="font-bold">© Copyright Ministry of Ayush.</span> All Rights Reserved</p>
-            <p>In house product</p>
           </div>
           <Image 
-            src="/placeholder.svg?height=50&width=50" 
+            src="/images/footlogo.png" 
+            alt='Logo'
             width={50} 
             height={50} 
             className="rounded-full"
