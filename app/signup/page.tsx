@@ -15,10 +15,21 @@ import { Progress } from "@/components/ui/progress"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Header } from "@/components/ui/Header"
 import { Footer } from "@/components/ui/Footer"
+import { ErrorProps } from 'next/error'
 
 
 export default function Component() {
-  const [formData, setFormData] = useState({
+  type FormData = {
+    dob: Date | null;
+    fullName: '',
+    email: '',
+    phone: '',
+    aadhar: '',
+    pan: '',
+    password: '',
+    confirmPassword: '',
+  }
+  const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
     phone: '',
@@ -28,19 +39,28 @@ export default function Component() {
     password: '',
     confirmPassword: '',
   })
-  const [errors, setErrors] = useState({})
+  type Errors = {
+    email?: string;
+    aadhar?: string;
+    pan?: string;
+    password?: string;
+    confirmPassword?: string;
+  };
+  
+  const [errors, setErrors] = useState<Errors>({})
   const [showPassword, setShowPassword] = useState(false)
   const [passwordStrength, setPasswordStrength] = useState(0)
   const [uploadStatus, setUploadStatus] = useState('idle') // 'idle', 'uploading', 'success', 'error'
-  const [uploadedFile, setUploadedFile] = useState(null)
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
-  const handleInputChange = (e) => {
+  type FieldName = 'email' | 'aadhar' | 'pan' | 'password' | 'confirmPassword';
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
-    validateField(name, value)
+    validateField(name as FieldName, value)
   }
-
-  const validateField = (name, value) => {
+  const validateField = (name: keyof Errors, value: string) => {
     let error = ''
     switch (name) {
       case 'email':
@@ -62,10 +82,10 @@ export default function Component() {
       default:
         break
     }
-    setErrors(prev => ({ ...prev, [name]: error }))
+    setErrors((prev: Errors) => ({ ...prev, [name]: error }))
   }
 
-  const calculatePasswordStrength = (password) => {
+  const calculatePasswordStrength = (password:  string) => {
     let strength = 0
     if (password.length >= 8) strength += 25
     if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 25
@@ -73,20 +93,20 @@ export default function Component() {
     if (password.match(/[^a-zA-Z\d]/)) strength += 25
     return strength
   }
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0]
+  
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
     if (file) {
       setUploadStatus('uploading')
       // Simulating an upload process
       setTimeout(() => {
-        setUploadedFile(file)
+        setUploadedFile(file);
         setUploadStatus('success')
       }, 2000)
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Here you would typically send the form data to your backend
     console.log('Form submitted:', formData)
@@ -184,9 +204,9 @@ export default function Component() {
                   <PopoverContent className="w-auto p-0">
                     <Calendar
                       mode="single"
-                      selected={formData.dob}
-                      onSelect={(date) => setFormData(prev => ({ ...prev, dob: date }))}
-                      initialFocus
+                      selected={formData.dob || undefined}
+                      onSelect={(date: Date | undefined) => setFormData(prev => ({ ...prev, dob: date || null}))}
+                      // initialFocus={true}
                     />
                   </PopoverContent>
                 </Popover>
@@ -205,7 +225,7 @@ export default function Component() {
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => document.getElementById('profilePhoto').click()}
+                  onClick={() => document.getElementById('profilePhoto')?.click()}
                   className="w-full border-2 border-primary/20 hover:bg-primary/10"
                   disabled={uploadStatus === 'uploading'}
                 >
@@ -226,7 +246,7 @@ export default function Component() {
                 <Alert className="mt-2 bg-green-50 text-green-700 border-green-200">
                   <CheckCircle2 className="h-4 w-4" />
                   <AlertDescription>
-                    File "{uploadedFile.name}" uploaded successfully!
+                  File &quot;{uploadedFile?.name}&quot; uploaded successfully!
                   </AlertDescription>
                 </Alert>
               )}
