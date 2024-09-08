@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { Button } from "@/components/ui/button";
+import {AIChatbotIcon} from "@/components/ui/chatbot"
 import {
   ArrowRight,
   CheckCircle,
@@ -14,6 +15,10 @@ import {
 import Link from "next/link";
 // import { Link } from 'react-router-dom';
 export default function Home() {
+  function handleChatbotOpen(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -328,6 +333,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+      <AIChatbotIcon onOpen={handleChatbotOpen} />
     </div>
   );
 }
