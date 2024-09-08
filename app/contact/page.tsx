@@ -21,7 +21,7 @@ export default function ContactUs() {
         <div className="max-w-6xl mx-auto space-y-8">
         <header className="text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-green-800 mb-2">Contact Us</h1>
-          <p className="text-xl text-blue-700">We're here to help. Feel free to reach out to us with your queries.</p>
+          <p className="text-xl text-blue-700">We&#39;re here to help. Feel free to reach out to us with your queries.</p>
         </header>
 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
