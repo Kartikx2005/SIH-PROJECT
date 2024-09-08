@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {AIChatbotIcon} from "@/components/ui/chatbot"
+
 import { Label } from "@/components/ui/label";
 import {
   Card,
@@ -106,6 +108,10 @@ export default function ForgotPasswordPage() {
         return "Enter your identifier";
     }
   };
+
+  function handleChatbotOpen(): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 to-indigo-200 ">
@@ -214,6 +220,8 @@ export default function ForgotPasswordPage() {
         </Card>
       </div>
       <Footer />
+      <AIChatbotIcon onOpen={handleChatbotOpen} />
+
     </div>
   );
 }

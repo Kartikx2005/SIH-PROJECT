@@ -42,23 +42,21 @@ export function Header() {
                   {/* Add dropdown items here */}
                 </div>
               </div>
-              <div className="relative group">
+              {/* <div className="relative group">
                 <button className="hover:text-blue-600">Media Corner</button>
                 <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg hidden group-hover:block">
-                  {/* Add dropdown items here */}
                 </div>
-              </div>
-              <div className="relative group">
+              </div> */}
+              {/* <div className="relative group">
                 <button className="hover:text-blue-600">Citizen Corner</button>
                 <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg hidden group-hover:block">
-                  {/* Add dropdown items here */}
                 </div>
-              </div>
+              </div> */}
               <Link href="/contact" className="hover:text-blue-600">Contact Us</Link>
-              <button className="hover:text-blue-600">
+              {/* <button className="hover:text-blue-600">
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
-              </button>
+              </button> */}
               <Link href="/dashboard" className="hover:text-blue-600">Dashboard</Link>
             </div>
           </div>

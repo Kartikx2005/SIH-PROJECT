@@ -4,6 +4,8 @@ import { ChevronDown, ChevronUp, HelpCircle, FileText, PhoneCall } from 'lucide-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
+import {AIChatbotIcon} from "@/components/ui/chatbot"
+
 
 const faqs = [
   {
@@ -104,6 +106,10 @@ const Accordion = ({ items }: AccordionProps) => {
 };
 
 export default function FAQPage() {
+  function handleChatbotOpen(): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 to-blue-50">
       <Header />
@@ -139,7 +145,8 @@ export default function FAQPage() {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
+      <AIChatbotIcon onOpen={handleChatbotOpen} />
     </div>
   )
 }

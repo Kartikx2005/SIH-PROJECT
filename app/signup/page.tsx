@@ -16,6 +16,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Header } from "@/components/ui/Header"
 import { Footer } from "@/components/ui/Footer"
 import { ErrorProps } from 'next/error'
+import {AIChatbotIcon} from "@/components/ui/chatbot"
 
 
 export default function Component() {
@@ -110,6 +111,10 @@ export default function Component() {
     e.preventDefault()
     // Here you would typically send the form data to your backend
     console.log('Form submitted:', formData)
+  }
+
+  function handleChatbotOpen(): void {
+    throw new Error('Function not implemented.')
   }
 
   return (
@@ -324,6 +329,7 @@ export default function Component() {
       </Card>
     </div>
     <Footer/>
+    <AIChatbotIcon onOpen={handleChatbotOpen} />
     </div>
   )
 }

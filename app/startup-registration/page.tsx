@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import {AIChatbotIcon} from "@/components/ui/chatbot"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -600,6 +601,10 @@ export default function StartupRegistrationForm() {
     }
   };
 
+  function handleChatbotOpen(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-100 to-indigo-200">
       <Header />
@@ -677,6 +682,8 @@ export default function StartupRegistrationForm() {
         </Alert>
       )}
       <Footer />
+      <AIChatbotIcon onOpen={handleChatbotOpen} />
     </div>
+    
   );
 }

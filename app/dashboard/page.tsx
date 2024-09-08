@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import {AIChatbotIcon} from "@/components/ui/chatbot"
+
 import {
   Bell,
   Upload,
@@ -84,6 +87,10 @@ export default function Dashboard() {
     minute: "2-digit",
   });
   
+  function handleChatbotOpen(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 to-blue-50">
       <Header />
@@ -338,6 +345,7 @@ export default function Dashboard() {
         </div>
       </main>
       <Footer />
+      <AIChatbotIcon onOpen={handleChatbotOpen} />
     </div>
   );
 }

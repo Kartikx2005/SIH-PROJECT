@@ -12,6 +12,7 @@ import { Eye, EyeOff } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Header } from "@/components/ui/Header"
 import { Footer } from "@/components/ui/Footer"
+import {AIChatbotIcon} from "@/components/ui/chatbot"
 
 
 export default function LoginPage() {
@@ -99,6 +100,10 @@ export default function LoginPage() {
       default:
         return 'Enter your identifier'
     }
+  }
+
+  function handleChatbotOpen(): void {
+    throw new Error('Function not implemented.')
   }
 
   return (
@@ -218,6 +223,7 @@ export default function LoginPage() {
       </Card>
       </div>
       <Footer/>
+      <AIChatbotIcon onOpen={handleChatbotOpen} />
     </div>
   )
 }

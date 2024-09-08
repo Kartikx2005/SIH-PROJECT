@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
-
+// import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -29,9 +29,11 @@ export default function Home() {
               Naturopathy, Unani, Siddha, and Homoeopathy ventures.
             </p>
             <div className="space-x-4">
+              <Link href="/startup-registration" passHref>
               <Button size="lg" className="bg-green-700 hover:bg-green-800">
                 Register Your Startup
               </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"
@@ -314,12 +316,14 @@ export default function Home() {
               Join the growing community of AYUSH entrepreneurs. Register today
               and take your first step toward transforming healthcare.
             </p>
-            <Button
-              size="lg"
-              className="bg-white text-green-600 hover:bg-gray-100"
-            >
-              Start Registration
-            </Button>
+            <Link href="/startup-registration" passHref>
+              <Button
+                size="lg"
+                className="bg-white text-green-600 hover:bg-gray-100"
+              >
+                Startup Registration
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
