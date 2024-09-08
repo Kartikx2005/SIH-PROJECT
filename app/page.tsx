@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { Button } from "@/components/ui/button";
 import {AIChatbotIcon} from "@/components/ui/chatbot"
-import {
+import { 
+  // random 
   ArrowRight,
   CheckCircle,
   Clock,
