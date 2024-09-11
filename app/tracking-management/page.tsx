@@ -11,10 +11,65 @@ import { Bell, CheckCircle, Clock, XCircle, Search, Download, HelpCircle } from 
 import { Header } from '@/components/ui/Header'
 import { Footer } from '@/components/ui/Footer'
 
+// type TrackingInfo = {
+//   type: string;
+//   status: string;
+//   stages: {
+//     name: string;
+//     completed: boolean;
+//     timestamp: string | null;
+//   }[];
+//   description?: string;
+//   lastUpdate?: string;
+//   submissionDate: string;
+//   documentVerification: string;
+//   assignedOfficer: string;
+//   officerContact: string;
+// };
+
+type ApplicationTrackingInfo = {
+  type: 'Application';
+  status: string;
+  stages: {
+    name: string;
+    completed: boolean;
+    timestamp: string | null;
+  }[];
+  submissionDate: string;
+  documentVerification: string;
+  assignedOfficer: string;
+  officerContact: string;
+};
+
+// Define the structure for a ticket
+type TicketTrackingInfo = {
+  type: 'ticket';
+  status: string;
+  description: string;
+  submissionDate: string;
+  resolutionDate: string;
+};
+
+// Define the structure for a complaint
+type ComplaintTrackingInfo = {
+  type: 'complaint';
+  status: string;
+  description: string;
+  submissionDate: string;
+  lastUpdate: string;
+};
+
+// Define a union type that can be any of the above
+type TrackingInfo = ApplicationTrackingInfo | TicketTrackingInfo | ComplaintTrackingInfo;
+
+type MockTrackingData = {
+  [key: string]: TrackingInfo;
+};
+
 // Mock data for demonstration
-const mockTrackingData = {
+const mockTrackingData: Record<string, TrackingInfo> = {
   "APP123": {
-    type: "application",
+    type: "Application",
     status: "Under Review",
     stages: [
       { name: "Application Received", completed: true, timestamp: "2023-06-15 10:30 AM" },
@@ -44,20 +99,20 @@ const mockTrackingData = {
 
 export default function TrackingManagement() {
   const [trackingId, setTrackingId] = useState("")
-  const [trackingResult, setTrackingResult] = useState(null)
+  const [trackingResult, setTrackingResult] = useState<TrackingInfo | null>(null);
   const [error, setError] = useState("")
 
   const handleTrack = () => {
     setError("")
-    if (mockTrackingData[trackingId]) {
-      setTrackingResult(mockTrackingData[trackingId])
+    if (trackingId in mockTrackingData) {
+      setTrackingResult(mockTrackingData[trackingId as keyof typeof mockTrackingData]);
     } else {
       setError("Invalid Tracking ID, please try again.")
       setTrackingResult(null)
     }
   }
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status : string ) => {
     switch (status) {
       case "Approved":
         return "text-green-500"
@@ -68,7 +123,7 @@ export default function TrackingManagement() {
     }
   }
 
-  const getStatusIcon = (status) => {
+  const getStatusIcon = (status : string ) => {
     switch (status) {
       case "Approved":
         return <CheckCircle className="h-5 w-5 text-green-500" />
@@ -117,7 +172,7 @@ export default function TrackingManagement() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
-                {trackingResult.type === "application" && (
+                {trackingResult.type === "Application" && (
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-semibold mb-2">Application Progress</h3>
@@ -140,7 +195,7 @@ export default function TrackingManagement() {
                             <span className="ml-2 text-sm text-gray-500">
                               ({stage.timestamp})
                             </span>
-                          )}
+                          )}eyJhbGciOiJSUzI1NiIsImtpZCI6IjAyMTAwNzE2ZmRkOTA0ZTViNGQ0OTExNmZmNWRiZGZjOTg5OTk0MDEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiS2FydGlrIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0p4MGlnSVVGVzlyQmszbEJTcFRKbTJDa3hxbzhTTWhneUpJaTFWZTl0eFRtZXVpZz1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9leGEyLWZiMTcwIiwiYXVkIjoiZXhhMi1mYjE3MCIsImF1dGhfdGltZSI6MTcyNjA0MTIyMywidXNlcl9pZCI6IlJvMkl0dnR6QjhVUDZHdnNLQXpyb3NkOFFrQzMiLCJzdWIiOiJSbzJJdHZ0ekI4VVA2R3ZzS0F6cm9zZDhRa0MzIiwiaWF0IjoxNzI2MDQxMjI3LCJleHAiOjE3MjYwNDQ4MjcsImVtYWlsIjoia2FydGlreGRldjIwMDVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDc3MTY2OTA1MjIzOTIwNjU0MjIiXSwiZW1haWwiOlsia2FydGlreGRldjIwMDVAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.exC29xdTXCXnSBZmLcOCBSkFfX_JitAMbj3nxHorF8O6al3V2uWqNHyCRdmfwzTTk0FbyVjyKcnFdf3CI3FhpRa9W1XCxZdXPvfkwFV1W_4CMi5tLA2UjUCfLXccS7V5hvf48Ljst2rk9107AB-yJLGAUGKD4jql8LcM37G8K45RQ2KafRmmH3E-oBwfnRicBL11CXHoVanPbBLNkXnN8kLnNBjhl3mdS8mNJu8J_KfhCLUG9iHwXv9jAqxZTbTfSW-5wCsCTSmOQstJBPJFjO6sp4807moNfOMzIow3RZem-Fgj6EmbmamcoWmbZLD9DyJ4KtUbYHLPtZ4IsnCRYw
                         </div>
                       ))}
                     </div>
