@@ -281,9 +281,11 @@ export default function Home() {
               ))}
             </div>
             <div className="text-center mt-12">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Need Help? Contact Our Support Team
-              </Button>
+              <Link href="/contact" passHref>
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  Need Help? Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
