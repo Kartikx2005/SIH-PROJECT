@@ -139,7 +139,7 @@ export default function TrackingManagement() {
       <Header />
       <main className="flex-grow p-4 sm:p-6 lg:p-8">
         <div className="max-w-4xl mx-auto space-y-8">
-          <h1 className="text-3xl font-bold text-center text-green-800">Tracking Management</h1>
+          <h1 className="text-3xl font-bold text-center text-green-800">Track Application</h1>
 
           <Card className="bg-white shadow-lg">
             <CardContent className="p-6">

@@ -27,7 +27,7 @@ export default function Home() {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
-          <div className="container mx-auto px-10 relative z-12">
+          <div className="container mx-auto px-10 relative z-20">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Empowering AYUSH Startups
             </h1>
@@ -36,13 +36,27 @@ export default function Home() {
               Naturopathy, Unani, Siddha, and Homoeopathy ventures.
             </p>
             <div className="space-x-4">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-white border-white bg-transparent hover:bg-white hover:text-green-700 transition-colors duration-300"
-              >
-                Track Application Status
-              </Button>
+              {/* <Button size="lg" className="bg-green-700 hover:bg-green-800">
+                Register Your Startup
+              </Button> */}
+              <Link href="/startup-registration" passHref>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-white border-white bg-transparent hover:bg-white hover:text-green-700 transition-colors duration-300"
+                >
+                  Startup Registration
+                </Button>
+              </Link>
+              <Link href="/track-application" passHref>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-white border-white bg-transparent hover:bg-white hover:text-green-700 transition-colors duration-300"
+                >
+                  Track Application Status
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="absolute inset-0 bg-opacity-20 bg-[url('/placeholder.svg?height=400&width=800')] bg-cover bg-center"></div>
