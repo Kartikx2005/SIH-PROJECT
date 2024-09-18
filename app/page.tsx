@@ -3,9 +3,9 @@ import React from "react";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { Button } from "@/components/ui/button";
-import {AIChatbotIcon} from "@/components/ui/chatbot"
-import { 
-  // random 
+import { AIChatbotIcon } from "@/components/ui/chatbot";
+import {
+  // random
   ArrowRight,
   CheckCircle,
   Clock,
@@ -36,11 +36,6 @@ export default function Home() {
               Naturopathy, Unani, Siddha, and Homoeopathy ventures.
             </p>
             <div className="space-x-4">
-              <Link href="/startup-registration" passHref>
-              <Button size="lg" className="bg-green-700 hover:bg-green-800">
-                Register Your Startup
-              </Button>
-              </Link>
               <Button
                 size="lg"
                 variant="outline"
