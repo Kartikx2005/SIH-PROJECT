@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
+import Link from "next/link";
 
 const coreValues = [
   {
@@ -210,12 +211,16 @@ export default function AboutUs() {
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
+              <Link href="/contact" passHref>
+
                 <Button className="bg-blue-500 hover:bg-blue-600 text-white">
                   <Mail className="mr-2 h-4 w-4" /> Contact Us
                 </Button>
-                <Button className="bg-green-500 hover:bg-green-600 text-white">
+                </Link>
+
+                {/* <Button className="bg-green-500 hover:bg-green-600 text-white">
                   <Phone className="mr-2 h-4 w-4" /> Call Us
-                </Button>
+                </Button> */}
               </div>
             </CardContent>
           </Card>

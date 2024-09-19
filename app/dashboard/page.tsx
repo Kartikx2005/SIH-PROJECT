@@ -3,7 +3,8 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import {AIChatbotIcon} from "@/components/ui/chatbot"
+import { AIChatbotIcon } from "@/components/ui/chatbot";
+import Link from "next/link";
 
 import {
   Bell,
@@ -72,8 +73,8 @@ const ticketStatusColors = {
   Resolved: "bg-green-100 text-green-800",
 };
 type DocumentStatus = "Uploaded" | "Pending" | "Error";
-  type NotificationType = "error" | "info" | "success";
-  type Status = "Under Review" | "Approved" | "Documents Missing";
+type NotificationType = "error" | "info" | "success";
+type Status = "Under Review" | "Approved" | "Documents Missing";
 type TicketStatus = "Open" | "In Progress" | "Resolved";
 export default function Dashboard() {
   const currentDate = new Date().toLocaleDateString("en-US", {
@@ -86,7 +87,7 @@ export default function Dashboard() {
     hour: "2-digit",
     minute: "2-digit",
   });
-  
+
   function handleChatbotOpen(): void {
     throw new Error("Function not implemented.");
   }
@@ -296,30 +297,37 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <Button
-                    variant="outline"
-                    className="w-full border-blue-500 text-blue-500 hover:bg-blue-50"
-                  >
-                    View Guidelines
-                  </Button>
+                  <Link href="/guidelines" passHref>
+                    <Button
+                      variant="outline"
+                      className="w-full border-blue-500 text-blue-500 hover:bg-blue-50"
+                    >
+                      View Guidelines
+                    </Button>
+                  </Link>
                   <Button
                     variant="outline"
                     className="w-full border-blue-500 text-blue-500 hover:bg-blue-50"
                   >
                     Download Forms
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full border-blue-500 text-blue-500 hover:bg-blue-50"
-                  >
-                    FAQs
-                  </Button>
+                  <Link href="/faqs" passHref>
+                    <Button
+                      variant="outline"
+                      className="w-full border-blue-500 text-blue-500 hover:bg-blue-50"
+                    >
+                      FAQs
+                    </Button>
+                  </Link>
+                  <Link href="/contact" passHref>
+
                   <Button
                     variant="outline"
                     className="w-full border-blue-500 text-blue-500 hover:bg-blue-50"
                   >
                     Contact Us
                   </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
